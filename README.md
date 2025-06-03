@@ -1,66 +1,196 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# QR Order System API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 概要
+QRコードを活用したオーダーシステムのバックエンドAPIです。ドメイン駆動設計（DDD）の考え方を取り入れ、クリーンアーキテクチャを意識した実装を行っています。
 
-## About Laravel
+## 技術スタック
+- PHP 8.2
+- Laravel 10.x
+- MySQL 8.0
+- Docker
+- GitHub Actions（CI/CD）
+- Laravel Sanctum（認証）
+- Laravel Cashier（サブスクリプション管理）
+- Web Push通知
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## アーキテクチャ
+本プロジェクトは、ドメイン駆動設計（DDD）とクリーンアーキテクチャの原則に従って構築されています。Laravelの従来の構造ではなく、よりドメイン中心の設計を採用しています。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### レイヤー構造
+```
+app/
+└── Layers/
+    ├── Presentation/    # プレゼンテーション層
+    │   └── API/        # APIエンドポイント（従来のControllerの代替）
+    ├── Application/    # アプリケーション層（ユースケース）
+    ├── Domain/         # ドメイン層
+    │   ├── Entity/    # エンティティ
+    │   │   ├── Shop/     # 店舗関連のエンティティ
+    │   │   ├── Category/ # カテゴリ関連のエンティティ
+    │   │   └── Customer/ # 顧客関連のエンティティ
+    │   └── ValueObject/ # 値オブジェクト
+    └── Infrastructure/ # インフラストラクチャ層
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 主要なドメインモデル
+- Store（店舗）
+- MenuItem（メニュー項目）
+- Order（注文）
+- Customer（顧客）
+- Seat（座席）
+- Category（カテゴリ）
+- Subscription（サブスクリプション）
 
-## Learning Laravel
+## データベース設計
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### ER図
+```mermaid
+erDiagram
+    stores ||--o{ menu_items : has
+    stores ||--o{ seats : has
+    stores ||--o{ categories : has
+    menu_items ||--o{ menu_item_options : has
+    menu_item_options ||--o{ menu_item_option_values : has
+    orders ||--o{ order_options : has
+    customers ||--o{ orders : places
+    seats ||--o{ orders : associated_with
+    categories ||--o{ menu_items : contains
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    stores {
+        id bigint PK
+        name varchar
+        description text
+        status varchar
+        created_at timestamp
+        updated_at timestamp
+    }
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    menu_items {
+        id bigint PK
+        store_id bigint FK
+        category_id bigint FK
+        name varchar
+        description text
+        price decimal
+        is_available boolean
+        created_at timestamp
+        updated_at timestamp
+    }
 
-## Laravel Sponsors
+    orders {
+        id bigint PK
+        customer_id bigint FK
+        seat_id bigint FK
+        status varchar
+        total_amount decimal
+        created_at timestamp
+        updated_at timestamp
+    }
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    customers {
+        id bigint PK
+        name varchar
+        email varchar
+        stripe_id varchar
+        created_at timestamp
+        updated_at timestamp
+    }
 
-### Premium Partners
+    seats {
+        id bigint PK
+        store_id bigint FK
+        number varchar
+        status varchar
+        created_at timestamp
+        updated_at timestamp
+    }
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    categories {
+        id bigint PK
+        store_id bigint FK
+        name varchar
+        sort_order int
+        created_at timestamp
+        updated_at timestamp
+    }
+```
 
-## Contributing
+## 主要な機能
+- QRコードを使用した座席認証
+- メニュー表示・注文機能
+- リアルタイムオーダー通知（Web Push通知）
+- 注文状況管理
+- 売上レポート生成
+- サブスクリプション管理（Stripe連携）
+- マルチテナント対応（複数店舗管理）
+- カテゴリ別メニュー管理
+- メニューオプション管理（トッピング等）
+- 座席状態管理
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## セットアップ手順
 
-## Code of Conduct
+### 必要条件
+- Docker
+- Docker Compose
+- Make（オプション）
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### インストール
+```bash
+# リポジトリのクローン
+git clone https://github.com/jobpay/qr-order-api.git
+cd qr-order-api
 
-## Security Vulnerabilities
+# 環境変数の設定
+cp .env.example .env
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Dockerコンテナの起動
+docker-compose up -d
 
-## License
+# 依存関係のインストール
+docker-compose exec app composer install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# データベースのマイグレーション
+docker-compose exec app php artisan migrate
+
+# シードデータの投入
+docker-compose exec app php artisan db:seed
+```
+
+## API仕様
+APIの詳細な仕様は[Swagger UI](http://localhost:8080/api/documentation)で確認できます。
+
+## テスト
+```bash
+# ユニットテストの実行
+docker-compose exec app php artisan test
+
+# 特定のテストの実行
+docker-compose exec app php artisan test --filter=OrderTest
+```
+
+## CI/CD
+GitHub Actionsを使用して以下の自動化を実現しています：
+- プルリクエスト時の自動テスト
+- コードスタイルチェック（PHP_CodeSniffer）
+- 静的解析（PHPStan）
+- 本番環境への自動デプロイ
+
+## 今後の展望
+- [ ] 決済機能の追加
+- [ ] 多言語対応
+- [ ] アレルギー情報の表示機能
+- [ ] 顧客フィードバックシステム
+
+## コントリビューション
+プロジェクトへの貢献は大歓迎です。以下の手順で貢献できます：
+1. このリポジトリをフォーク
+2. 新しいブランチを作成 (`git checkout -b feature/amazing-feature`)
+3. 変更をコミット (`git commit -m 'Add some amazing feature'`)
+4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
+5. プルリクエストを作成
+
+## ライセンス
+[MIT License](LICENSE)
+
+## 作者
+- [jobpay](https://github.com/jobpay)
