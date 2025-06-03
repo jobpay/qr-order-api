@@ -1,7 +1,7 @@
-# QR Order System API
+# QRコード対応 モバイルオーダーシステム API
 
 ## 概要
-QRコードを活用したオーダーシステムのバックエンドAPIです。ドメイン駆動設計（DDD）の考え方を取り入れ、クリーンアーキテクチャを意識した実装を行っています。
+QRコードを活用したオーダーシステムのバックエンドAPIです。ドメイン駆動設計（DDD）およびクリーンアーキテクチャの原則を参考に構築されています。完全なクリーンアーキテクチャを厳密に実現しているわけではなく、実装の一部には妥協や独自の解釈も含まれています。Laravelの従来の構造ではなく、ドメイン中心の設計を採用しています。
 
 ## 技術スタック
 
@@ -19,20 +19,41 @@ QRコードを活用したオーダーシステムのバックエンドAPIです
 本プロジェクトは、ドメイン駆動設計（DDD）およびクリーンアーキテクチャの原則を参考に構築されています。完全なクリーンアーキテクチャを厳密に実現しているわけではなく、実装の一部には妥協や独自の解釈も含まれています。Laravelの従来の構造ではなく、ドメイン中心の設計を採用しています。
 
 ### レイヤー構造
-
 ```
 app/
 └── Layers/
-    ├── Presentation/    # プレゼンテーション層
-    │   └── API/        # APIエンドポイント（従来のControllerの代替）
-    ├── Application/    # アプリケーション層（ユースケース）
-    ├── Domain/         # ドメイン層
-    │   ├── Entity/    # エンティティ
-    │   │   ├── Shop/     # 店舗関連のエンティティ
-    │   │   ├── Category/ # カテゴリ関連のエンティティ
-    │   │   └── Customer/ # 顧客関連のエンティティ
-    │   └── ValueObject/ # 値オブジェクト
-    └── Infrastructure/ # インフラストラクチャ層
+    ├── Presentation/          # プレゼンテーション層
+    │   ├── Controllers/       # コントローラー
+    │   │   ├── Shop/         # 店舗管理側のコントローラー
+    │   │   │   ├── ShopController.php
+    │   │   │   ├── MenuItemController.php
+    │   │   │   └── OrderController.php
+    │   │   └── Customer/     # 顧客側のコントローラー
+    │   │       ├── OrderController.php
+    │   │       └── MenuItemController.php
+    │   └── Requests/         # フォームリクエストバリデーション
+    │       ├── Shop/
+    │       └── Customer/
+    ├── Application/          # アプリケーション層
+    │   └── UseCase/          # ユースケース（アプリケーションサービス）
+    │       ├── Shop/         # 店舗管理側のユースケース
+    │       │   ├── Shop/
+    │       │   │   ├── StoreUseCase.php
+    │       │   │   └── ShowUseCase.php
+    │       │   └── MenuItem/
+    │       └── Customer/
+    ├── Domain/               # ドメイン層
+    │   ├── Entity/          # エンティティ
+    │   │   ├── Shop/        # 店舗関連のエンティティ
+    │   │   ├── Category/    # カテゴリ関連のエンティティ
+    │   │   └── Customer/    # 顧客関連のエンティティ
+    │   └── ValueObject/     # 値オブジェクト
+    └── Infrastructure/      # インフラストラクチャ層
+        ├── Repository/      # リポジトリ実装
+        │   ├── StoreRepository.php
+        │   ├── MenuItemRepository.php
+        │   └── OrderRepository.php
+        └── Service/         # 外部サービス連携
 ```
 
 ### 主要なドメインモデル
