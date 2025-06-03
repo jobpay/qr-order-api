@@ -73,18 +73,42 @@ erDiagram
     stores ||--o{ menu_items : has
     stores ||--o{ seats : has
     stores ||--o{ categories : has
+    stores ||--o{ users : has
     menu_items ||--o{ menu_item_options : has
     menu_item_options ||--o{ menu_item_option_values : has
-    orders ||--o{ order_options : has
+    orders ||--o{ order_details : contains
+    order_details ||--o{ order_detail_options : has
     customers ||--o{ orders : places
-    seats ||--o{ orders : associated_with
+    seats ||--o{ customers : has
     categories ||--o{ menu_items : contains
+    menu_items ||--o{ order_details : included_in
 
     stores {
         id bigint PK
-        name varchar
-        description text
-        status varchar
+        name varchar "店舗名"
+        category_id int "店舗カテゴリ"
+        description text "店舗説明"
+        logo varchar "ロゴ"
+        postal_code varchar "郵便番号"
+        address varchar "住所"
+        deleted_at timestamp "論理削除日時"
+        created_at timestamp
+        updated_at timestamp
+    }
+
+    users {
+        id bigint PK
+        store_id bigint FK "店舗ID"
+        role_id int "権限ID"
+        name varchar "名前"
+        email varchar "メールアドレス"
+        email_verified_at timestamp "メール確認日時"
+        password varchar "パスワード"
+        stripe_id varchar "Stripe顧客ID"
+        pm_type varchar "支払い方法タイプ"
+        pm_last_four varchar "カード末尾4桁"
+        trial_ends_at timestamp "トライアル終了日時"
+        remember_token varchar
         created_at timestamp
         updated_at timestamp
     }
@@ -101,21 +125,62 @@ erDiagram
         updated_at timestamp
     }
 
+    menu_item_options {
+        id bigint PK
+        menu_item_id bigint FK
+        name varchar
+        is_required boolean
+        created_at timestamp
+        updated_at timestamp
+    }
+
+    menu_item_option_values {
+        id bigint PK
+        menu_item_option_id bigint FK
+        name varchar
+        price_addition decimal
+        created_at timestamp
+        updated_at timestamp
+    }
+
     orders {
         id bigint PK
-        customer_id bigint FK
-        seat_id bigint FK
-        status varchar
-        total_amount decimal
+        customer_id bigint FK "カスタマーID"
+        menu_item_id bigint FK "メニュー項目ID"
+        quantity int "数量"
+        price decimal "合計価格"
+        status tinyint "注文状態"
+        created_at timestamp
+        updated_at timestamp
+    }
+
+    order_details {
+        id bigint PK
+        order_id bigint FK
+        menu_item_id bigint FK
+        quantity int
+        unit_price decimal
+        subtotal decimal
+        created_at timestamp
+        updated_at timestamp
+    }
+
+    order_detail_options {
+        id bigint PK
+        order_detail_id bigint FK
+        menu_item_option_value_id bigint FK
+        price_addition decimal
         created_at timestamp
         updated_at timestamp
     }
 
     customers {
         id bigint PK
-        name varchar
-        email varchar
-        stripe_id varchar
+        seat_id bigint FK "座席ID"
+        token varchar "トークン"
+        status tinyint "座席セッション状態"
+        start_at timestamp "利用開始時間"
+        end_at timestamp "利用終了時間"
         created_at timestamp
         updated_at timestamp
     }
@@ -123,8 +188,10 @@ erDiagram
     seats {
         id bigint PK
         store_id bigint FK
-        number varchar
-        status varchar
+        number varchar "座席番号"
+        order int "並び順"
+        status int "座席の状態"
+        qr_code varchar "QRコード情報"
         created_at timestamp
         updated_at timestamp
     }
