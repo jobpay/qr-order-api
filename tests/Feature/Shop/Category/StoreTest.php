@@ -15,7 +15,7 @@ class StoreTest extends TestCase
     /**
      * @test
      */
-    public function 正常系_カテゴリを新規作成できる(): void
+    public function 正常系_カテゴリーを新規作成できる(): void
     {
         // テストデータの準備
         $store = Store::factory()->create();
@@ -24,7 +24,7 @@ class StoreTest extends TestCase
         ]);
 
         $params = [
-            'name' => 'テストカテゴリ',
+            'name' => 'テストカテゴリー',
             'order' => 1,
         ];
 
@@ -38,7 +38,7 @@ class StoreTest extends TestCase
         // データベースのアサーション
         $this->assertDatabaseHas('categories', [
             'store_id' => $store->id,
-            'name' => 'テストカテゴリ',
+            'name' => 'テストカテゴリー',
             'order' => 1,
         ]);
     }
@@ -49,7 +49,7 @@ class StoreTest extends TestCase
     public function 異常系_認証されていない場合はエラーとなる(): void
     {
         $params = [
-            'name' => 'テストカテゴリ',
+            'name' => 'テストカテゴリー',
             'order' => 1,
         ];
 
@@ -80,7 +80,7 @@ class StoreTest extends TestCase
         // orderが未入力
         $response = $this->actingAs($user)
             ->postJson('/api/categories', [
-                'name' => 'テストカテゴリ',
+                'name' => 'テストカテゴリー',
             ]);
 
         $response->assertStatus(400)
@@ -110,23 +110,23 @@ class StoreTest extends TestCase
     /**
      * @test
      */
-    public function 異常系_同じ店舗内で同じ表示順のカテゴリは作成できない(): void
+    public function 異常系_同じ店舗内で同じ表示順のカテゴリーは作成できない(): void
     {
         $store = Store::factory()->create();
         $user = User::factory()->create([
             'store_id' => $store->id,
         ]);
 
-        // 既存のカテゴリを作成
+        // 既存のカテゴリーを作成
         Category::factory()->create([
             'store_id' => $store->id,
             'order' => 1,
         ]);
 
-        // 同じ表示順で新しいカテゴリを作成しようとする
+        // 同じ表示順で新しいカテゴリーを作成しようとする
         $response = $this->actingAs($user)
             ->postJson('/api/categories', [
-                'name' => 'テストカテゴリ',
+                'name' => 'テストカテゴリー',
                 'order' => 1,
             ]);
 

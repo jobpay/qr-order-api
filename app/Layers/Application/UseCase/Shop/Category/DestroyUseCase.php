@@ -32,17 +32,17 @@ class DestroyUseCase
     ): Output {
         $category_model = $this->category_repository->find($category_id);
         if (is_null($category_model)) {
-            return new Output(errors: ['指定されたカテゴリが見つかりません。']);
+            return new Output(errors: ['指定されたカテゴリーが見つかりません。']);
         }
 
         if ($this->menu_item_repository->existsByCategoryId($category_id)) {
-            return new Output(errors: ['指定されたカテゴリに紐づく商品が存在します。']);
+            return new Output(errors: ['指定されたカテゴリーに紐づく商品が存在します。']);
         }
 
         $category_entity = $this->category_factory->makeByModel($category_model);
 
         if($category_entity->isOtherStore($store_id)) {
-            return new Output(errors: ['指定されたカテゴリの削除権限がありません。']);
+            return new Output(errors: ['指定されたカテゴリーの削除権限がありません。']);
         }
 
         $this->category_repository->delete($category_entity);

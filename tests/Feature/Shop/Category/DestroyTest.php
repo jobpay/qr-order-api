@@ -15,7 +15,7 @@ class DestroyTest extends TestCase
     /**
      * @test
      */
-    public function 正常系_カテゴリを削除できる(): void
+    public function 正常系_カテゴリーを削除できる(): void
     {
         // テストデータの準備
         $store = Store::factory()->create();
@@ -55,7 +55,7 @@ class DestroyTest extends TestCase
     /**
      * @test
      */
-    public function 異常系_存在しないカテゴリの場合はエラーとなる(): void
+    public function 異常系_存在しないカテゴリーの場合はエラーとなる(): void
     {
         $store = Store::factory()->create();
         $user = User::factory()->create([
@@ -67,14 +67,14 @@ class DestroyTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['指定されたカテゴリが見つかりません。']
+                'errors' => ['指定されたカテゴリーが見つかりません。']
             ]);
     }
 
     /**
      * @test
      */
-    public function 異常系_他店舗のカテゴリは削除できない(): void
+    public function 異常系_他店舗のカテゴリーは削除できない(): void
     {
         $store1 = Store::factory()->create();
         $store2 = Store::factory()->create();
@@ -92,7 +92,7 @@ class DestroyTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['指定されたカテゴリの削除権限がありません。']
+                'errors' => ['指定されたカテゴリーの削除権限がありません。']
             ]);
     }
 }

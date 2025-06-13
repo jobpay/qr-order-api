@@ -80,7 +80,7 @@ class IndexTest extends TestCase
     /**
      * @test
      */
-    public function 異常系_他店舗のカテゴリは取得できない(): void
+    public function 異常系_他店舗のカテゴリーは取得できない(): void
     {
         // テストデータの準備
         $store1 = Store::factory()->create();

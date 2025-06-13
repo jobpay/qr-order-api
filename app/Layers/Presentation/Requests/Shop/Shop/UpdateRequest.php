@@ -39,8 +39,8 @@ class UpdateRequest extends FormRequest
             'name.required' => '名前は必須です',
             'name.string' => '名前は文字列で入力してください',
             'name.max' => '名前は255文字以内で入力してください',
-            'category_id.required' => '店舗カテゴリは必須です',
-            'category_id.integer' => '店舗カテゴリは整数で入力してください',
+            'category_id.required' => '店舗カテゴリーは必須です',
+            'category_id.integer' => '店舗カテゴリーは整数で入力してください',
             'postal_code.integer' => '郵便番号は整数で入力してください',
             'address.string' => '住所は文字列で入力してください',
         ];

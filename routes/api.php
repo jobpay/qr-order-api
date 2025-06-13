@@ -130,7 +130,7 @@ Route::group(['prefix' => 'menu_items'], function () {
     Route::delete('/{menu_item_id}', [MenuItemController::class, 'destroy']);
 });
 
-// カテゴリ管理
+// カテゴリー管理
 Route::group(['prefix' => 'categories'], function () {
     Route::get('/', [CategoryController::class, 'index']);
     Route::post('/', [CategoryController::class, 'store']);

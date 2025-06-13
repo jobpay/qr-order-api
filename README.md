@@ -45,7 +45,7 @@ app/
     ├── Domain/               # ドメイン層
     │   ├── Entity/          # エンティティ
     │   │   ├── Shop/        # 店舗関連のエンティティ
-    │   │   ├── Category/    # カテゴリ関連のエンティティ
+    │   │   ├── Category/    # カテゴリー関連のエンティティ
     │   │   └── Customer/    # 顧客関連のエンティティ
     │   └── ValueObject/     # 値オブジェクト
     └── Infrastructure/      # インフラストラクチャ層
@@ -62,7 +62,7 @@ app/
 - Order（注文）
 - Customer（顧客）
 - Seat（座席）
-- Category（カテゴリ）
+- Category（カテゴリー）
 - Subscription（サブスクリプション）
 
 ## データベース設計
@@ -86,7 +86,7 @@ erDiagram
     stores {
         id bigint PK
         name varchar "店舗名"
-        category_id int "店舗カテゴリ"
+        category_id int "店舗カテゴリー"
         description text "店舗説明"
         logo varchar "ロゴ"
         postal_code varchar "郵便番号"
@@ -215,7 +215,7 @@ erDiagram
 - 売上レポート生成
 - サブスクリプション管理（Stripe連携）
 - マルチテナント対応（複数店舗管理）
-- カテゴリ別メニュー管理
+- カテゴリー別メニュー管理
 - メニューオプション管理（トッピング等）
 - 座席状態管理
 
