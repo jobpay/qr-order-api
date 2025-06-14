@@ -31,7 +31,7 @@ Route::group(['prefix' => 'menu_items'], function () {
     Route::get('/{menu_item_id}', [MenuItemController::class, 'show']);
 });
 
-// 顧客用カテゴリ
+// 顧客用カテゴリー
 Route::group(['prefix' => 'categories'], function () {
     Route::get('/', [CategoryController::class, 'index']);
 });

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('店舗名');
-            $table->unsignedInteger('category_id')->nullable()->comment('店舗カテゴリ');
+            $table->unsignedInteger('category_id')->nullable()->comment('店舗カテゴリー');
             $table->text('description')->nullable()->comment('店舗説明');
             $table->string('logo')->nullable()->comment('ロゴ');
             $table->string('postal_code')->nullable()->comment('郵便番号');

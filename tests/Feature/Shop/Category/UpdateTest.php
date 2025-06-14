@@ -142,7 +142,9 @@ class UpdateTest extends TestCase
             ]);
 
         $response->assertStatus(400)
-            ->assertJsonValidationErrors(['name']);
+            ->assertJson([
+                'errors' => ['カテゴリー名は必須です']
+            ]);
 
         // orderが未入力
         $response = $this->actingAs($user)
@@ -151,7 +153,9 @@ class UpdateTest extends TestCase
             ]);
 
         $response->assertStatus(400)
-            ->assertJsonValidationErrors(['order']);
+            ->assertJson([
+                'errors' => ['表示順は必須です']
+            ]);
     }
 
     /**
