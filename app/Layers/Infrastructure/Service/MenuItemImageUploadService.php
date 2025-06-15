@@ -44,13 +44,6 @@ class MenuItemImageUploadService
                 options: 'public',
             );
 
-            logger(__LINE__);
-            logger($url);
-            logger(env('AWS_URL'));
-            logger(env('AWS_BUCKET'));
-            logger(env('DB_HOST'));
-
-
             return $url === false ? null : env('AWS_URL') . '/' . env('AWS_BUCKET') . '/' . $url;
         } catch (\Exception $e) {
             Log::error($e->getMessage());

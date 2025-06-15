@@ -40,8 +40,6 @@ class MenuItemRepository
             $query->where('name', $request->input('name'));
         }
 
-        logger($query->toSql());
-
         return $query->get();
     }
 

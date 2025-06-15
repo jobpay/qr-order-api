@@ -24,8 +24,6 @@ class ListRequest extends FormRequest
      */
     public function prepareForValidation(): void
     {
-        logger($this->input('from'));
-
         $this->merge([
             'from' => $this->input('from'),
             'to' => $this->input('to'),

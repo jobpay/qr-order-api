@@ -23,7 +23,7 @@ class CustomerToken
     public static function make(?string $token = null, ?int $seat_id = null): self
     {
         if (is_null($token) && is_null($seat_id)) {
-            throw new DomainException('tokenが未指定の場合はseat_idの指定が必要です');
+            throw new DomainException(['tokenが未指定の場合はseat_idの指定が必要です']);
         }
 
         if (is_null($token)) {

@@ -21,7 +21,7 @@ class SeatStatus
     ) {
         $value ??= 0;
         if (!in_array($value, [self::VACANT, self::ORDER_WAIT, self::CUSTOMER_WAIT, self::PROVIDED, self::CHECKOUT_WAIT])) {
-            throw new DomainException('座席ステータスの値が不正です');
+            throw new DomainException(['座席ステータスの値が不正です']);
         }
     }
 

@@ -36,7 +36,7 @@ class SaleFactory
                 order: $this->order_factory->makeByModel($model),
                 menu_item: $this->menu_item_factory->makeByModel($menu_item),
                 paid_at: null,
-                amount: $model->price * $model->quantity,
+                amount: (int)($model->price * $model->quantity),
             );
         });
 
@@ -57,7 +57,7 @@ class SaleFactory
             order: $this->order_factory->makeByModel($model->order),
             menu_item: $this->menu_item_factory->makeByModel($model->order->menuItem),
             paid_at: $model->paid_at,
-            amount: $model->amount,
+            amount: (int)$model->amount,
         );
     }
 

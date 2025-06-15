@@ -2,8 +2,6 @@
 
 namespace App\Layers\Presentation\Controllers\Customer;
 
-use App\Http\Controllers\Api\Customer\CustomerOrderEntity;
-use App\Http\Controllers\Api\Customer\CustomerOrderOptionEntity;
 use App\Http\Controllers\Controller;
 use App\Layers\Application\UseCase\Customer\Order\ConfirmUseCase;
 use App\Layers\Application\UseCase\Customer\Order\ListUseCase;
