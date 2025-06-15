@@ -48,8 +48,5 @@ jobs:
         mysql -h 127.0.0.1 -P 3306 -u root -proot -e "GRANT ALL PRIVILEGES ON laravel_testing.* TO 'root'@'%';"
         mysql -h 127.0.0.1 -P 3306 -u root -proot -e "FLUSH PRIVILEGES;"
 
-    - name: Execute Feature Tests
-      run: vendor/bin/phpunit --testsuite Feature
-
-    - name: Execute Unit Tests
-      run: vendor/bin/phpunit --testsuite Unit
+    - name: Execute Tests
+      run: vendor/bin/phpunit
