@@ -28,8 +28,7 @@ class DestroyTest extends TestCase
         ]);
 
         // API呼び出し
-        $response = $this->actingAs($user)
-            ->deleteJson("/api/categories/{$category->id}");
+        $response = $this->actingAs($user)->deleteJson("/api/categories/{$category->id}");
 
         // レスポンスのアサーション
         $response->assertStatus(200);
@@ -62,13 +61,11 @@ class DestroyTest extends TestCase
             'store_id' => $store->id,
         ]);
 
-        $response = $this->actingAs($user)
-            ->deleteJson('/api/categories/999999');
+        $response = $this->actingAs($user)->deleteJson('/api/categories/999999');
 
-        $response->assertStatus(400)
-            ->assertJson([
-                'errors' => ['指定されたカテゴリーが見つかりません。']
-            ]);
+        $response->assertStatus(400)->assertJson([
+            'errors' => ['指定されたカテゴリーが見つかりません。'],
+        ]);
     }
 
     /**
@@ -87,12 +84,10 @@ class DestroyTest extends TestCase
             'store_id' => $store2->id,
         ]);
 
-        $response = $this->actingAs($user)
-            ->deleteJson("/api/categories/{$category->id}");
+        $response = $this->actingAs($user)->deleteJson("/api/categories/{$category->id}");
 
-        $response->assertStatus(400)
-            ->assertJson([
-                'errors' => ['指定されたカテゴリーの削除権限がありません。']
-            ]);
+        $response->assertStatus(400)->assertJson([
+            'errors' => ['指定されたカテゴリーの削除権限がありません。'],
+        ]);
     }
 }

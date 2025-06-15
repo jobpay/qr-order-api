@@ -21,18 +21,15 @@ class CategoryController extends Controller
      * @return JsonResponse
      * @throws \Illuminate\Auth\AuthenticationException
      */
-    public function index(
-        ListRequest $request,
-        ListUseCase $use_case,
-    ): JsonResponse {
+    public function index(ListRequest $request, ListUseCase $use_case): JsonResponse
+    {
         $output = $use_case->exec($request, $this->getStoreId());
         if ($output->isError()) {
             return response()->json($output->getErrors(), 400);
         }
 
         return response()->json([
-            'categories' => $output->getData()[0]->map(function ($item) {
-                /** @var CategoryEntity $item */
+            'categories' => $output->getData()[0]->map(function (CategoryEntity $item) {
                 return [
                     'id' => $item->getId(),
                     'name' => $item->getName(),
@@ -51,10 +48,8 @@ class CategoryController extends Controller
      * @return JsonResponse
      * @throws \Exception
      */
-    public function store(
-        StoreRequest $request,
-        StoreUseCase $use_case,
-    ): JsonResponse {
+    public function store(StoreRequest $request, StoreUseCase $use_case): JsonResponse
+    {
         $output = $use_case->exec($request, $this->getStoreId());
         if ($output->isError()) {
             return response()->json($output->getErrors(), 400);
@@ -70,11 +65,8 @@ class CategoryController extends Controller
      * @return JsonResponse
      * @throws \Exception
      */
-    public function update(
-        int $category_id,
-        UpdateRequest $request,
-        UpdateUseCase $use_case,
-    ): JsonResponse {
+    public function update(int $category_id, UpdateRequest $request, UpdateUseCase $use_case): JsonResponse
+    {
         $output = $use_case->exec($request, $category_id, $this->getStoreId());
         if ($output->isError()) {
             return response()->json($output->getErrors(), 400);
@@ -89,10 +81,8 @@ class CategoryController extends Controller
      * @return JsonResponse
      * @throws \Exception
      */
-    public function destroy(
-        int $category_id,
-        DestroyUseCase $use_case,
-    ): JsonResponse {
+    public function destroy(int $category_id, DestroyUseCase $use_case): JsonResponse
+    {
         $output = $use_case->exec($category_id, $this->getStoreId());
         if ($output->isError()) {
             return response()->json($output->getErrors(), 400);

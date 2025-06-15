@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'order' => ['required', 'integer'],
+            'order' => ['required', 'integer', 'min:1'],
         ];
     }
 
@@ -38,6 +38,7 @@ class StoreRequest extends FormRequest
             'name.max' => 'カテゴリー名は100文字以内で入力してください',
             'order.required' => '表示順は必須です',
             'order.integer' => '表示順は整数で入力してください',
+            'order.min' => '表示順は1以上で入力してください',
         ];
     }
 }

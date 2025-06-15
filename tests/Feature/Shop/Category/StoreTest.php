@@ -60,57 +60,67 @@ class StoreTest extends TestCase
 
     /**
      * @test
+     * @dataProvider dataProvider_バリデーションエラー
      */
-    public function 異常系_バリデーションエラー_必須項目が未入力の場合(): void
+    public function 異常系_バリデーションエラー(array $params, string $expectedError): void
     {
         $store = Store::factory()->create();
         $user = User::factory()->create([
             'store_id' => $store->id,
         ]);
 
-        // nameが未入力
         $response = $this->actingAs($user)
-            ->postJson('/api/categories', [
-                'order' => 1,
-            ]);
+            ->postJson('/api/categories', $params);
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['カテゴリー名は必須です']
-            ]);
-
-        // orderが未入力
-        $response = $this->actingAs($user)
-            ->postJson('/api/categories', [
-                'name' => 'テストカテゴリー',
-            ]);
-
-        $response->assertStatus(400)
-            ->assertJson([
-                'errors' => ['表示順は必須です']
+                'errors' => [$expectedError]
             ]);
     }
 
     /**
-     * @test
+     * dataProvider_バリデーションエラー
      */
-    public function 異常系_バリデーションエラー_文字数制限超過の場合(): void
+    public function dataProvider_バリデーションエラー(): array
     {
-        $store = Store::factory()->create();
-        $user = User::factory()->create([
-            'store_id' => $store->id,
-        ]);
-
-        $response = $this->actingAs($user)
-            ->postJson('/api/categories', [
-                'name' => str_repeat('あ', 101), // 101文字
-                'order' => 1,
-            ]);
-
-        $response->assertStatus(400)
-            ->assertJson([
-                'errors' => ['カテゴリー名は100文字以内で入力してください']
-            ]);
+        return [
+            'nameが未入力' => [
+                'params' => ['order' => 1],
+                'expectedError' => 'カテゴリー名は必須です'
+            ],
+            'orderが未入力' => [
+                'params' => ['name' => 'テストカテゴリー'],
+                'expectedError' => '表示順は必須です'
+            ],
+            'nameが101文字以上' => [
+                'params' => [
+                    'name' => str_repeat('あ', 101),
+                    'order' => 1
+                ],
+                'expectedError' => 'カテゴリー名は100文字以内で入力してください'
+            ],
+            'nameが空文字' => [
+                'params' => [
+                    'name' => '',
+                    'order' => 1
+                ],
+                'expectedError' => 'カテゴリー名は必須です'
+            ],
+            'orderが0以下' => [
+                'params' => [
+                    'name' => 'テストカテゴリー',
+                    'order' => 0
+                ],
+                'expectedError' => '表示順は1以上で入力してください'
+            ],
+            'orderが小数' => [
+                'params' => [
+                    'name' => 'テストカテゴリー',
+                    'order' => 1.5
+                ],
+                'expectedError' => '表示順は整数で入力してください'
+            ]
+        ];
     }
 
     /**
