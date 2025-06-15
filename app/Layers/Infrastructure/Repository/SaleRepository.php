@@ -7,7 +7,7 @@ use App\Layers\Domain\Entity\Shop\Sale\SaleEntityList;
 use App\Layers\Presentation\Requests\Shop\Sale\ListRequest;
 use App\Models\Sale;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class SaleRepository
 {

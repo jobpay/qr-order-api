@@ -49,6 +49,7 @@ class Role
             self::ADMIN => '管理者',
             self::EMPLOYEE => '従業員',
             self::PART_TIMER => 'アルバイト',
+            default => '不明',
         };
     }
 
@@ -61,6 +62,17 @@ class Role
             self::ADMIN => 1,
             self::EMPLOYEE => 2,
             self::PART_TIMER => 3,
+            default => 0,
+        };
+    }
+
+    public function getRoleNameForCustomer(): string
+    {
+        return match ($this->id) {
+            self::ADMIN => '管理者',
+            self::EMPLOYEE => '従業員',
+            self::PART_TIMER => 'アルバイト',
+            default => '不明',
         };
     }
 }

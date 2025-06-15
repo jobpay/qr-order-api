@@ -69,15 +69,13 @@ class OrderController extends Controller
         }
 
         return response()->json([
-            'orders' => $output->getData()[0]->map(function ($item) {
-                /** @var CustomerOrderEntity $item */
+            'orders' => $output->getData()[0]->map(function (OrderEntity $item) {
                 return [
                     'menu_item_id' => $item->getMenuItemId(),
                     'menu_name' => $item->getMenuName(),
                     'quantity' => $item->getQuantity(),
                     'price' => $item->getPrice(),
-                    'options' => $item->getOptions()->map(function ($option) {
-                        /** @var CustomerOrderOptionEntity $option */
+                    'options' => $item->getOptions()->map(function (OrderOptionEntity $option) {
                         return [
                             'id' => $option->getId(),
                             'option_value_id' => $option->getOptionValueId(),

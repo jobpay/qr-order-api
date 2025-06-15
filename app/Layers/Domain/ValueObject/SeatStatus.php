@@ -54,6 +54,7 @@ class SeatStatus
             self::CUSTOMER_WAIT => '提供待ち',
             self::PROVIDED => '提供済み',
             self::CHECKOUT_WAIT => 'チェックアウト待ち',
+            default => '不明',
         };
     }
 

@@ -7,7 +7,7 @@ use App\Layers\Domain\Entity\Customer\CustomerEntity;
 use App\Layers\Presentation\Requests\Customer\Category\ListRequest as CustomerListRequest;
 use App\Layers\Presentation\Requests\Shop\Category\ListRequest;
 use App\Models\Menu\Category;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class CategoryRepository
 {

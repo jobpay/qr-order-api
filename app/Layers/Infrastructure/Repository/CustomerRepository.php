@@ -93,7 +93,7 @@ class CustomerRepository
 
     /**
      * @param string $token
-     * @return Store|null
+     * @return Customer|null
      */
     public function findWithSeatAndOrdersByToken(string $token): ?Customer
     {

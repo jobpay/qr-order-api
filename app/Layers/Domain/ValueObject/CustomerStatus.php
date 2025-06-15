@@ -42,6 +42,7 @@ class CustomerStatus
             self::EMPTY => '空席',
             self::PRESENT => '在席中',
             self::CLOSED => '退席済み',
+            default => '不明',
         };
     }
 
