@@ -89,10 +89,11 @@ class SeatFactory
 
     /**
      * 座席セッションの開始時間と終了時間を取得
-     * @param $model
-     * @return null[]
+     *
+     * @param Seat $model
+     * @return array
      */
-    private function getStartAtAndEndAt($model): array
+    private function getStartAtAndEndAt(Seat $model): array
     {
         $last_customer = $model->status !== SeatStatus::VACANT ?
             $model->customers->last() : null;

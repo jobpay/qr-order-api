@@ -6,7 +6,7 @@ use App\Layers\Domain\Entity\Shop\Seat\SeatEntity;
 use App\Layers\Domain\ValueObject\SeatStatus;
 use App\Layers\Presentation\Requests\Shop\Seat\ListRequest;
 use App\Models\Seat;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class SeatRepository
 {

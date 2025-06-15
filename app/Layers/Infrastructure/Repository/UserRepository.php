@@ -15,7 +15,7 @@ class UserRepository
      */
     public function find(int $id): ?User
     {
-        return User::query()->find($id);
+        return User::query()->where('id', $id)->first();
     }
 
     /**

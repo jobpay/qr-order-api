@@ -31,8 +31,6 @@ class OrderFactory
                 throw new DomainException(['指定されたメニュー項目IDが見つかりません。']);
             }
 
-            logger(__LINE__);
-
             // option_value_idの存在チェック
             $customer_order_option_entity_collection = collect($order['option_value_ids'])->map(function ($option_value_id) {
                 $option_value_model = $this->menu_item_repository->findOptionValue($option_value_id);
@@ -46,7 +44,7 @@ class OrderFactory
                     option_name: $option_value_model->menuItemOption->name,
                     option_value_id: $option_value_id,
                     option_value_name: $option_value_model->value,
-                    cost: $option_value_model->cost,
+                    cost: (int)$option_value_model->cost,
                 );
             });
 
@@ -56,7 +54,7 @@ class OrderFactory
                 menu_name: $menu_item_model->name,
                 quantity: (int)$order['quantity'],
                 options: $customer_order_option_entity_collection,
-                price: $menu_item_model->price,
+                price: (int)$menu_item_model->price,
             );
         });
     }
@@ -76,9 +74,6 @@ class OrderFactory
                 throw new DomainException(['指定されたメニュー項目IDが見つかりません。']);
             }
 
-            logger(__LINE__);
-            logger('a', $order['option_value_ids']);
-
             // option_value_idの存在チェック
             $customer_order_option_entity_collection = collect($order['option_value_ids'])->map(function ($option_value_id) {
                 $option_value_model = $this->menu_item_repository->findOptionValue($option_value_id);
@@ -92,7 +87,7 @@ class OrderFactory
                     option_name: $option_value_model->menuItemOption->name,
                     option_value_id: $option_value_id,
                     option_value_name: $option_value_model->value,
-                    cost: $option_value_model->cost,
+                    cost: (int)$option_value_model->cost,
                 );
             });
 
@@ -102,7 +97,7 @@ class OrderFactory
                 menu_name: $menu_item_model->name,
                 quantity: (int)$order['quantity'],
                 options: $customer_order_option_entity_collection,
-                price: $menu_item_model->price,
+                price: (int)$menu_item_model->price,
             );
         });
     }
@@ -128,10 +123,10 @@ class OrderFactory
                         option_name: $order_option->menuItemOptionValue->menuItemOption->name,
                         option_value_id: $order_option->menuItemOptionValue->id,
                         option_value_name: $order_option->menuItemOptionValue->value,
-                        cost: $order_option->menuItemOptionValue->cost,
+                        cost: (int)$order_option->menuItemOptionValue->cost,
                     );
                 }),
-                price: $customer_order_model->price,
+                price: (int)$customer_order_model->price,
             );
         });
     }

@@ -53,9 +53,9 @@ class StoreRepository
 
     /**
      * @param int $store_id
-     * @return Store
+     * @return Store|null
      */
-    public function find(int $store_id): Store
+    public function find(int $store_id): ?Store
     {
         return Store::find($store_id);
     }

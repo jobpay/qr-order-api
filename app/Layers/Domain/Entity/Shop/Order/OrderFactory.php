@@ -64,8 +64,8 @@ class OrderFactory
                     value: $item->menuItemOptionValue->value,
                 );
             }),
-            quantity: $model->quantity,
-            price: $model->price,
+            quantity: (int)$model->quantity,
+            price: (int)$model->price,
             created_at: $model->created_at,
         );
     }

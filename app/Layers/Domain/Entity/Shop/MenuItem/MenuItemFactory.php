@@ -38,7 +38,7 @@ class MenuItemFactory
             store_id: $store_id,
             number: $request->input('number'),
             name: $request->input('name'),
-            price: $request->input('price'),
+            price: (int)$request->input('price'),
             description: $request->input('description'),
             image: MenuItemImage::make(
                 file: $request->file('image'),
@@ -59,7 +59,7 @@ class MenuItemFactory
                             id: null,
                             order: $item['order'],
                             name: $item['name'],
-                            cost: $item['cost'],
+                            cost: (int)$item['cost'],
                         );
                     }),
                 );
@@ -81,7 +81,7 @@ class MenuItemFactory
             store_id: $model->store_id,
             number: $model->number,
             name: $model->name,
-            price: $model->price,
+            price: (int)$model->price,
             description: $model->description,
             image: MenuItemImage::make(
                 url: $model->image,
@@ -102,7 +102,7 @@ class MenuItemFactory
                             id: $item->id,
                             order: $item->order,
                             name: $item->value,
-                            cost: $item->cost,
+                            cost: (int)$item->cost,
                         );
                     }),
                 );
@@ -133,7 +133,7 @@ class MenuItemFactory
             store_id: $model->store_id,
             number: $request->input('number'),
             name: $request->input('name'),
-            price: $request->input('price'),
+            price: (int)$request->input('price'),
             description: $request->input('description'),
             image: MenuItemImage::make(
                 file: $request->file('image'),
@@ -155,7 +155,7 @@ class MenuItemFactory
                             id: null,
                             order: $item['order'],
                             name: $item['name'],
-                            cost: $item['cost'],
+                            cost: (int)$item['cost'],
                         );
                     }),
                 );

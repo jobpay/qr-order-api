@@ -19,7 +19,7 @@ class CustomerStatus
     ) {
         $value = $value ?? self::EMPTY;
         if (!in_array($value, [self::EMPTY, self::PRESENT, self::CLOSED])) {
-            throw new DomainException('座席セッションステータスの値が不正です');
+            throw new DomainException(['座席セッションステータスの値が不正です']);
         }
     }
 
@@ -42,6 +42,7 @@ class CustomerStatus
             self::EMPTY => '空席',
             self::PRESENT => '在席中',
             self::CLOSED => '退席済み',
+            default => '不明',
         };
     }
 
