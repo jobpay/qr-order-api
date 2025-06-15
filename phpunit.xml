@@ -9,12 +9,17 @@
             <directory>tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory>tests/Feature</directory>
-            <exclude>
-                <directory>tests/Feature/Auth</directory>
-            </exclude>
+            <directory suffix="Test.php">tests/Feature</directory>
+            <exclude>tests/Feature/Auth</exclude>
         </testsuite>
     </testsuites>
+
+    <coverage>
+        <include>
+            <directory>app</directory>
+        </include>
+    </coverage>
+
     <source>
         <include>
             <directory>app</directory>
