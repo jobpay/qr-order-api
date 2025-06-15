@@ -92,7 +92,7 @@ class OrderRepository
         CustomerEntity $customer_entity,
         CustomerListRequest $request,
     ): DbCollection {
-        return Order::query()
+        return DbCollection::make(Order::query()
             ->with([
                 'orderOptions',
                 'menuItem',
@@ -102,7 +102,7 @@ class OrderRepository
             ->where('customer_id', $customer_entity->getId())
             ->limit($request->input('limit'))
             ->offset($request->input('offset'))
-            ->get();
+            ->get());
     }
 
     /**
@@ -115,8 +115,7 @@ class OrderRepository
         Collection $customer_order_entity_collection
     ): void {
         // オーダーの登録
-        $customer_order_entity_collection->each(function ($customer_order_entity) use ($customer_entity) {
-            /** @var CustomerOrderEntity $customer_order_entity */
+        $customer_order_entity_collection->each(function (CustomerOrderEntity $customer_order_entity) use ($customer_entity) {
             $order = Order::query()->create([
                 'customer_id' => $customer_entity->getId(),
                 'menu_item_id' => $customer_order_entity->getMenuItemId(),
@@ -127,7 +126,7 @@ class OrderRepository
             $customer_order_entity->getOptions()->each(function ($option) use ($order) {
                 /** @var OrderOptionEntity $option */
                 OrderOption::create([
-                    'order_id' => $order->id,
+                    'order_id' => $order->getKey(),
                     'menu_item_option_value_id' => $option->getOptionValueId(),
                 ]);
             });

@@ -52,7 +52,7 @@ class StoreRepository
     }
 
     /**
-     * @param integer $store_id
+     * @param int $store_id
      * @return Store|null
      */
     public function find(int $store_id): ?Store

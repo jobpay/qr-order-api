@@ -7,7 +7,6 @@ use App\Layers\Domain\ValueObject\CustomerStatus;
 use App\Layers\Domain\ValueObject\SeatStatus;
 use App\Models\Customer;
 use App\Models\Seat;
-use App\Models\Store\Store;
 use Illuminate\Support\Facades\DB;
 
 class CustomerRepository

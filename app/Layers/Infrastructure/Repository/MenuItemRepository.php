@@ -117,14 +117,14 @@ class MenuItemRepository
             // メニューアイテムオプションの登録
             $menu_item_entity->getOptionList()->each(function (MenuItemOptionEntity $option) use ($menu_item) {
                 $menu_item_option = MenuItemOption::query()->create([
-                    'menu_item_id' => $menu_item->id,
+                    'menu_item_id' => $menu_item->getKey(),
                     'name' => $option->getName(),
                 ]);
 
                 // メニューアイテムオプション値の登録
                 $option->getOptionValueList()->each(function (MenuItemOptionValueEntity $option_value) use ($menu_item_option) {
                     MenuItemOptionValue::query()->create([
-                        'menu_item_option_id' => $menu_item_option->id,
+                        'menu_item_option_id' => $menu_item_option->getKey(),
                         'order' => $option_value->getOrder(),
                         'value' => $option_value->getName(),
                         'cost' => $option_value->getCost(),
@@ -214,7 +214,7 @@ class MenuItemRepository
                 // メニューアイテムオプション値の登録
                 $option->getOptionValueList()->each(function (MenuItemOptionValueEntity $option_value) use ($menu_item_option) {
                     MenuItemOptionValue::query()->create([
-                        'menu_item_option_id' => $menu_item_option->id,
+                        'menu_item_option_id' => $menu_item_option->getKey(),
                         'order' => $option_value->getOrder(),
                         'value' => $option_value->getName(),
                         'cost' => $option_value->getCost(),
