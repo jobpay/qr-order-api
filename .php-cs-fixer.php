@@ -18,11 +18,12 @@ return $config
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'no_unused_imports' => true,
-        'not_operator_with_successor_space' => true,
+        'not_operator_with_successor_space' => false,
         'trailing_comma_in_multiline' => true,
         'phpdoc_scalar' => true,
         'unary_operator_spaces' => true,
         'binary_operator_spaces' => true,
+        'return_type_declaration' => ['space_before' => 'none'],
         'blank_line_before_statement' => [
             'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
         ],

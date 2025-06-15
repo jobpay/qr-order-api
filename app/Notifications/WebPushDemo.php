@@ -4,8 +4,8 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\WebPush\WebPushMessage;
 use NotificationChannels\WebPush\WebPushChannel;
+use NotificationChannels\WebPush\WebPushMessage;
 
 class WebPushDemo extends Notification
 {
@@ -18,7 +18,7 @@ class WebPushDemo extends Notification
 
     public function toWebPush($notifiable, $notification)
     {
-        return (new WebPushMessage)
+        return (new WebPushMessage())
             ->title('Demo Notification')
             ->icon('/favicon.ico')
             ->body('This is a demo notification.');

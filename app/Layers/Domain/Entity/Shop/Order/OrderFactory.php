@@ -15,7 +15,7 @@ class OrderFactory
      * @return OrderEntity
      * @throws DomainException
      */
-    public function makeByModel($model) : OrderEntity
+    public function makeByModel($model): OrderEntity
     {
         return OrderEntity::make(
             id: $model->id,
@@ -47,7 +47,7 @@ class OrderFactory
     public function makeByModelAndRequest(
         Order $model,
         UpdateRequest $request
-    ) : OrderEntity {
+    ): OrderEntity {
         return OrderEntity::make(
             id: $model->id,
             store_id: $model->store_id,

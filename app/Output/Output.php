@@ -2,8 +2,6 @@
 
 namespace App\Output;
 
-use Illuminate\Support\Collection;
-
 class Output
 {
     /**

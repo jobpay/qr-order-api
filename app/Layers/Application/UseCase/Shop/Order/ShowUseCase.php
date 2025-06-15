@@ -39,7 +39,7 @@ class ShowUseCase
             return new Output(errors: $e->getMessages());
         }
 
-        if($order_entity->isOtherStore($store_id)) {
+        if ($order_entity->isOtherStore($store_id)) {
             return new Output(errors: ['指定された注文の閲覧権限がありません。']);
         }
 

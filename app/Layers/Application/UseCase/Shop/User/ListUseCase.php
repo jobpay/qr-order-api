@@ -30,6 +30,7 @@ class ListUseCase
         int $store_id,
     ): Output {
         $user_db_collection = $this->user_repository->get($request, $store_id);
+
         try {
             $user_list = $this->user_factory->makeListFromDbCollection($user_db_collection);
         } catch (DomainException $e) {

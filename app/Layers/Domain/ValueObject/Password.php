@@ -2,7 +2,6 @@
 
 namespace App\Layers\Domain\ValueObject;
 
-use App\Exceptions\DomainException;
 use Illuminate\Support\Facades\Hash;
 
 class Password

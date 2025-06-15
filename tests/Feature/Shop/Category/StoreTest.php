@@ -74,7 +74,7 @@ class StoreTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => [$expectedError]
+                'errors' => [$expectedError],
             ]);
     }
 
@@ -86,40 +86,40 @@ class StoreTest extends TestCase
         return [
             'nameが未入力' => [
                 'params' => ['order' => 1],
-                'expectedError' => 'カテゴリー名は必須です'
+                'expectedError' => 'カテゴリー名は必須です',
             ],
             'orderが未入力' => [
                 'params' => ['name' => 'テストカテゴリー'],
-                'expectedError' => '表示順は必須です'
+                'expectedError' => '表示順は必須です',
             ],
             'nameが101文字以上' => [
                 'params' => [
                     'name' => str_repeat('あ', 101),
-                    'order' => 1
+                    'order' => 1,
                 ],
-                'expectedError' => 'カテゴリー名は100文字以内で入力してください'
+                'expectedError' => 'カテゴリー名は100文字以内で入力してください',
             ],
             'nameが空文字' => [
                 'params' => [
                     'name' => '',
-                    'order' => 1
+                    'order' => 1,
                 ],
-                'expectedError' => 'カテゴリー名は必須です'
+                'expectedError' => 'カテゴリー名は必須です',
             ],
             'orderが0以下' => [
                 'params' => [
                     'name' => 'テストカテゴリー',
-                    'order' => 0
+                    'order' => 0,
                 ],
-                'expectedError' => '表示順は1以上で入力してください'
+                'expectedError' => '表示順は1以上で入力してください',
             ],
             'orderが小数' => [
                 'params' => [
                     'name' => 'テストカテゴリー',
-                    'order' => 1.5
+                    'order' => 1.5,
                 ],
-                'expectedError' => '表示順は整数で入力してください'
-            ]
+                'expectedError' => '表示順は整数で入力してください',
+            ],
         ];
     }
 
@@ -148,7 +148,7 @@ class StoreTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['指定された表示順は既に使用されています。']
+                'errors' => ['指定された表示順は既に使用されています。'],
             ]);
     }
 }

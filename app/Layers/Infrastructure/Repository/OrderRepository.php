@@ -154,10 +154,10 @@ class OrderRepository
     public function find(int $order_id): ?Order
     {
         return Order::select(
-                'orders.*',
-                'seats.number as seat_number',
-                'seats.store_id as store_id',
-            )
+            'orders.*',
+            'seats.number as seat_number',
+            'seats.store_id as store_id',
+        )
             ->with(['orderOptions', 'menuItem'])
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
             ->join('seats', 'customers.seat_id', '=', 'seats.id')

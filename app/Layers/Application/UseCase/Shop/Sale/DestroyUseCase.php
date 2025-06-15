@@ -29,6 +29,7 @@ class DestroyUseCase
         int $store_id,
     ): Output {
         $sale_model = $this->sale_repository->find($sale_id);
+
         try {
             $sale_entity = $this->sale_factory->makeByModel($sale_model);
 

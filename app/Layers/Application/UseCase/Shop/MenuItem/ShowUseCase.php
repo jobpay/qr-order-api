@@ -39,7 +39,7 @@ class ShowUseCase
             return new Output(errors: $e->getMessages());
         }
 
-        if($menu_item_entity->isOtherStore($store_id)) {
+        if ($menu_item_entity->isOtherStore($store_id)) {
             return new Output(errors: ['指定されたメニューの閲覧権限がありません。']);
         }
 

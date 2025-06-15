@@ -37,15 +37,18 @@ class Handler extends ExceptionHandler
         $this->renderable(function (ValidationException $e) {
             return response()->json(
                 data: ['errors' => $e->validator->errors()->all()],
-                status: Response::HTTP_BAD_REQUEST);
+                status: Response::HTTP_BAD_REQUEST
+            );
         });
 
         $this->reportable(function (Throwable $e) {
             Log::error($e->getMessage());
             Log::error($e->getTraceAsString());
+
             return response()->json(
                 data: ['errors' => 'サーバーエラーが発生しました。'],
-                status: Response::HTTP_INTERNAL_SERVER_ERROR);
+                status: Response::HTTP_INTERNAL_SERVER_ERROR
+            );
         });
     }
 }

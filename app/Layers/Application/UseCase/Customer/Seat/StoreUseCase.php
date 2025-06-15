@@ -43,6 +43,7 @@ class StoreUseCase
 
             if ($current_customer_status === CustomerStatus::PRESENT) {
                 $customer_entity = $this->customer_seat_factory->makeByModel($seat_model);
+
                 return new Output(data: [$customer_entity]);
             }
 

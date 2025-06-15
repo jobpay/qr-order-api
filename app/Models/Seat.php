@@ -6,7 +6,7 @@ use App\Models\Store\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $store_id

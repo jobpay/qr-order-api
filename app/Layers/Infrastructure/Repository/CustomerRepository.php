@@ -20,6 +20,7 @@ class CustomerRepository
     public function create(SeatEntity $customer_entity): void
     {
         DB::beginTransaction();
+
         try {
             Seat::query()
                 ->where('id', $customer_entity->getSeatId())
@@ -36,6 +37,7 @@ class CustomerRepository
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -48,6 +50,7 @@ class CustomerRepository
     public function update(SeatEntity $customer_entity): void
     {
         DB::beginTransaction();
+
         try {
             Customer::query()
                 ->where('id', $customer_entity->getId())
@@ -60,6 +63,7 @@ class CustomerRepository
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }

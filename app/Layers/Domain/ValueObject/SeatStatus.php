@@ -6,11 +6,11 @@ use App\Exceptions\DomainException;
 
 class SeatStatus
 {
-    const VACANT = 0;
-    const ORDER_WAIT = 1;
-    const CUSTOMER_WAIT = 2;
-    const PROVIDED = 3;
-    const CHECKOUT_WAIT = 4;
+    public const VACANT = 0;
+    public const ORDER_WAIT = 1;
+    public const CUSTOMER_WAIT = 2;
+    public const PROVIDED = 3;
+    public const CHECKOUT_WAIT = 4;
 
     /**
      * @param int|null $value

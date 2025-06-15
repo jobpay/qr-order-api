@@ -3,13 +3,10 @@
 namespace App\Layers\Infrastructure\Service;
 
 use App\Layers\Domain\ValueObject\Image\StoreImage;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Drivers\Imagick\Driver;
-use Intervention\Image\ImageManager;
 
 class StoreImageUploadService
 {
@@ -27,6 +24,7 @@ class StoreImageUploadService
         if (!$image->hasFile() && $image->hasCurrentUrl()) {
             return $image->getCurrentUrl();
         }
+
         try {
             $disk = Storage::disk('s3');
             // 既にファイルが存在していたら削除する
@@ -45,9 +43,11 @@ class StoreImageUploadService
                 name: $timestamp . '-' . $random . '.' . $request_file->guessExtension(),
                 options: 'public',
             );
+
             return $url === false ? null : env('AWS_URL') . '/' . env('AWS_BUCKET') . '/' . $url;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             throw $e;
         }
     }
@@ -70,6 +70,7 @@ class StoreImageUploadService
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             throw $e;
         }
     }

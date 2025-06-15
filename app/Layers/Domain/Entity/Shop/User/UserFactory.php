@@ -16,7 +16,7 @@ class UserFactory
      * @return UserEntity
      * @throws \App\Exceptions\DomainException
      */
-    public function makeNewFirst($request) : UserEntity
+    public function makeNewFirst($request): UserEntity
     {
         return UserEntity::make(
             id: null,
@@ -33,7 +33,7 @@ class UserFactory
      * @return UserEntity
      * @throws \App\Exceptions\DomainException
      */
-    public function makeNew($request, $store_id) : UserEntity
+    public function makeNew($request, $store_id): UserEntity
     {
         return UserEntity::make(
             id: null,
@@ -50,7 +50,7 @@ class UserFactory
      * @return UserEntity
      * @throws \App\Exceptions\DomainException
      */
-    public function makeByModel($model) : UserEntity
+    public function makeByModel($model): UserEntity
     {
         return UserEntity::make(
             id: $model->id,
@@ -74,7 +74,7 @@ class UserFactory
     public function makeUpdate(
         UserEntity $entity,
         UpdateRequest $request
-    ) : UserEntity {
+    ): UserEntity {
         $request_password = $request->input('password');
 
         return UserEntity::make(
@@ -93,7 +93,7 @@ class UserFactory
      * @return Collection
      * @throws \App\Exceptions\DomainException
      */
-    public function makeListFromDbCollection($collection) : Collection
+    public function makeListFromDbCollection($collection): Collection
     {
         return $collection->map(function ($item) {
             $this->makeByModel($item);

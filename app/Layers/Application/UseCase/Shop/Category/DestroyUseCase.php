@@ -41,7 +41,7 @@ class DestroyUseCase
 
         $category_entity = $this->category_factory->makeByModel($category_model);
 
-        if($category_entity->isOtherStore($store_id)) {
+        if ($category_entity->isOtherStore($store_id)) {
             return new Output(errors: ['指定されたカテゴリーの削除権限がありません。']);
         }
 

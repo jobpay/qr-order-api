@@ -11,7 +11,7 @@ class ShopFactory
      * @param $request
      * @return ShopEntity
      */
-    public function makeNew($request) : ShopEntity
+    public function makeNew($request): ShopEntity
     {
         return ShopEntity::make(
             id: null,
@@ -30,7 +30,7 @@ class ShopFactory
      * @param $model
      * @return ShopEntity
      */
-    public function makeByModel($model) : ShopEntity
+    public function makeByModel($model): ShopEntity
     {
         return ShopEntity::make(
             id: $model->id,
@@ -53,7 +53,7 @@ class ShopFactory
      * @param UpdateRequest $request
      * @return ShopEntity
      */
-    public function makeUpdate(ShopEntity $store_entity, UpdateRequest $request) : ShopEntity
+    public function makeUpdate(ShopEntity $store_entity, UpdateRequest $request): ShopEntity
     {
         return ShopEntity::make(
             id: $store_entity->getId(),

@@ -44,7 +44,7 @@ class MenuItemController extends Controller
                     'created_at' => $item->getCreatedAt()?->format('Y-m-d H:i:s'),
                     'updated_at' => $item->getUpdatedAt()?->format('Y-m-d H:i:s'),
                 ];
-            })
+            }),
         ]);
     }
 

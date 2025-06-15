@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Layers\Domain\Entity\Shop;
+
 use App\Layers\Domain\ValueObject\Image\StoreImage;
 use Carbon\Carbon;
 

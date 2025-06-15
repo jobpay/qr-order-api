@@ -6,9 +6,9 @@ use App\Exceptions\DomainException;
 
 class Role
 {
-    const ADMIN = 1;
-    const EMPLOYEE = 2;
-    const PART_TIMER = 3;
+    public const ADMIN = 1;
+    public const EMPLOYEE = 2;
+    public const PART_TIMER = 3;
 
     /**
      * @param int $id
@@ -28,6 +28,7 @@ class Role
         if (!in_array($id, [self::ADMIN, self::EMPLOYEE, self::PART_TIMER], true)) {
             throw new DomainException(['権限の値が不正です。']);
         }
+
         return new Role($id);
     }
 

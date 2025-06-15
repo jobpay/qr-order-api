@@ -45,6 +45,7 @@ class ListUseCase
         }
 
         $menu_item_db_collection = $this->menu_item_repository->getForCustomer($customer_entity, $request);
+
         try {
             $menu_item_list = $this->menu_item_factory->makeListFromDbCollection($menu_item_db_collection);
         } catch (DomainException $e) {

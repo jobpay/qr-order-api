@@ -13,7 +13,7 @@ class CategoryFactory
      * @param int $store_id
      * @return CategoryEntity
      */
-    public function makeNew(StoreRequest $request, int $store_id) : CategoryEntity
+    public function makeNew(StoreRequest $request, int $store_id): CategoryEntity
     {
         return CategoryEntity::make(
             id: null,
@@ -29,7 +29,7 @@ class CategoryFactory
      * @param $model
      * @return CategoryEntity
      */
-    public function makeByModel($model) : CategoryEntity
+    public function makeByModel($model): CategoryEntity
     {
         return CategoryEntity::make(
             id: $model->id,
@@ -49,7 +49,7 @@ class CategoryFactory
     public function makeUpdate(
         CategoryEntity $entity,
         UpdateRequest $request
-    ) : CategoryEntity {
+    ): CategoryEntity {
         return CategoryEntity::make(
             id: $entity->getId(),
             store_id: $entity->getStoreId(),
@@ -64,7 +64,7 @@ class CategoryFactory
      * @param $db_collection
      * @return Collection
      */
-    public function makeListFromDbCollection($db_collection) : Collection
+    public function makeListFromDbCollection($db_collection): Collection
     {
         return $db_collection->map(function ($item) {
             return $this->makeByModel($item);

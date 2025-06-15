@@ -39,7 +39,7 @@ class DeleteUseCase
             return new Output(errors: $e->getMessages());
         }
 
-        if($seat_entity->isOtherStore($store_id)) {
+        if ($seat_entity->isOtherStore($store_id)) {
             return new Output(errors: ['指定された座席の削除権限がありません。']);
         }
 

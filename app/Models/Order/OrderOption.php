@@ -3,12 +3,11 @@
 namespace App\Models\Order;
 
 use App\Models\BaseModel;
-use App\Models\Menu\MenuItem;
 use App\Models\Menu\MenuItemOptionValue;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $order_id

@@ -6,8 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ListRequest extends FormRequest
 {
-    const DEFAULT_LIMIT = 20;
-    const DEFAULT_OFFSET = 0;
+    public const DEFAULT_LIMIT = 20;
+    public const DEFAULT_OFFSET = 0;
 
     /**
      * Determine if the user is authorized to make this request.

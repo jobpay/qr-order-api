@@ -46,6 +46,7 @@ class ListUseCase
 
         $category_db_collection = $this->category_repository->getForCustomer($customer_entity, $request);
         $total = $this->category_repository->getTotal($customer_entity->getStoreId());
+
         try {
             $category_list = $this->category_factory->makeListFromDbCollection($category_db_collection);
         } catch (DomainException $e) {

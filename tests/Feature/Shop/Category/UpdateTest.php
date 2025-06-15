@@ -87,7 +87,7 @@ class UpdateTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['指定されたカテゴリーが見つかりません。']
+                'errors' => ['指定されたカテゴリーが見つかりません。'],
             ]);
     }
 
@@ -117,7 +117,7 @@ class UpdateTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['指定されたカテゴリーの更新権限がありません。']
+                'errors' => ['指定されたカテゴリーの更新権限がありません。'],
             ]);
     }
 
@@ -143,7 +143,7 @@ class UpdateTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['カテゴリー名は必須です']
+                'errors' => ['カテゴリー名は必須です'],
             ]);
 
         // orderが未入力
@@ -154,7 +154,7 @@ class UpdateTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['表示順は必須です']
+                'errors' => ['表示順は必須です'],
             ]);
     }
 
@@ -188,7 +188,7 @@ class UpdateTest extends TestCase
 
         $response->assertStatus(400)
             ->assertJson([
-                'errors' => ['指定された表示順は既に使用されています。']
+                'errors' => ['指定された表示順は既に使用されています。'],
             ]);
     }
 }

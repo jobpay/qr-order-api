@@ -15,7 +15,7 @@ class CustomerFactory
      * @return CustomerEntity
      * @throws DomainException
      */
-    public function makeByModel($model) : CustomerEntity
+    public function makeByModel($model): CustomerEntity
     {
         return CustomerEntity::make(
             id: $model->id,
@@ -41,7 +41,7 @@ class CustomerFactory
      * @return Collection
      * @throws DomainException
      */
-    public function makeListFromDbCollection($db_collection) : Collection
+    public function makeListFromDbCollection($db_collection): Collection
     {
         return $db_collection->map(function ($item) {
             return $this->makeByModel($item);

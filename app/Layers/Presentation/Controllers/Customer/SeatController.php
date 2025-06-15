@@ -59,6 +59,7 @@ class SeatController extends Controller
         }
         // クッキーにトークンをセットして返却
         $customer_entity = $output->getData()[0];
+
         return response()->json()
             ->cookie('qr_customer_token', $customer_entity->getToken()->getValue());
     }
@@ -79,6 +80,7 @@ class SeatController extends Controller
         if ($output->isError()) {
             return response()->json($output->getErrors(), 400);
         }
+
         // customer_tokenをキーごと削除
         return response()->json()
             ->cookie('qr_customer_token', '', -1);

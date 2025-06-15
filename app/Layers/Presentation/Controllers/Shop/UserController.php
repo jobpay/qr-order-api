@@ -40,7 +40,7 @@ class UserController extends Controller
                     'email' => $item->getEmail(),
                     'role' => $item->getRole()->getName(),
                 ];
-            })
+            }),
         ]);
     }
 

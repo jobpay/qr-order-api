@@ -15,7 +15,7 @@ class MenuItemImageUploadService
      * @return string|null
      * @throws \Exception
      */
-    public function putFileAs(MenuItemImage $image,): ?string
+    public function putFileAs(MenuItemImage $image): ?string
     {
         if ($image->empty()) {
             return null;
@@ -54,6 +54,7 @@ class MenuItemImageUploadService
             return $url === false ? null : env('AWS_URL') . '/' . env('AWS_BUCKET') . '/' . $url;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             throw $e;
         }
     }
@@ -76,6 +77,7 @@ class MenuItemImageUploadService
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             throw $e;
         }
     }

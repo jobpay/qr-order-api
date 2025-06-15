@@ -11,7 +11,7 @@ use App\Models\Seat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name 店舗名

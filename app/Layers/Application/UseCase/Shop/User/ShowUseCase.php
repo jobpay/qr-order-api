@@ -39,7 +39,7 @@ class ShowUseCase
             return new Output(errors: $e->getMessages());
         }
 
-        if($user_entity->isOtherStore($store_id)) {
+        if ($user_entity->isOtherStore($store_id)) {
             return new Output(errors: ['指定されたユーザーの閲覧権限がありません。']);
         }
 

@@ -90,7 +90,7 @@ class OrderController extends Controller
                     }),
                     'total_price' => $item->getTotalPrice(),
                 ];
-            })
+            }),
         ]);
     }
 

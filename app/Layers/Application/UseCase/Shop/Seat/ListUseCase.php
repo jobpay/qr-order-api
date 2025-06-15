@@ -31,6 +31,7 @@ class ListUseCase
     ): Output {
         $seat_db_collection = $this->seat_repository->get($request, $store_id);
         $total = $this->seat_repository->getTotal($store_id);
+
         try {
             $seat_entity_list = $this->seat_factory->makeListFromDbCollection($seat_db_collection);
         } catch (DomainException $e) {

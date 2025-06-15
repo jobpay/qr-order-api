@@ -22,12 +22,12 @@ class OrderFactory
      */
     public function makeNewList(
         StoreRequest $request
-    ) : Collection {
+    ): Collection {
 
         return collect($request->input('orders'))->map(function ($order) {
             // メニューの存在チェック
             $menu_item_model = $this->menu_item_repository->find($order['menu_item_id']);
-            if(is_null($menu_item_model)) {
+            if (is_null($menu_item_model)) {
                 throw new DomainException(['指定されたメニュー項目IDが見つかりません。']);
             }
 
@@ -36,7 +36,7 @@ class OrderFactory
             // option_value_idの存在チェック
             $customer_order_option_entity_collection = collect($order['option_value_ids'])->map(function ($option_value_id) {
                 $option_value_model = $this->menu_item_repository->findOptionValue($option_value_id);
-                if(is_null($option_value_model)) {
+                if (is_null($option_value_model)) {
                     throw new DomainException(['指定されたオプション値IDが見つかりません。']);
                 }
 
@@ -67,12 +67,12 @@ class OrderFactory
      */
     public function makeConfirmList(
         ConfirmRequest $request
-    ) : Collection {
+    ): Collection {
 
         return collect($request->input('orders'))->map(function ($order) {
             // メニューの存在チェック
             $menu_item_model = $this->menu_item_repository->find($order['menu_item_id']);
-            if(is_null($menu_item_model)) {
+            if (is_null($menu_item_model)) {
                 throw new DomainException(['指定されたメニュー項目IDが見つかりません。']);
             }
 
@@ -82,7 +82,7 @@ class OrderFactory
             // option_value_idの存在チェック
             $customer_order_option_entity_collection = collect($order['option_value_ids'])->map(function ($option_value_id) {
                 $option_value_model = $this->menu_item_repository->findOptionValue($option_value_id);
-                if(is_null($option_value_model)) {
+                if (is_null($option_value_model)) {
                     throw new DomainException(['指定されたオプション値IDが見つかりません。']);
                 }
 
@@ -113,7 +113,7 @@ class OrderFactory
      */
     public function makeListFromDbCollection(
         Collection $customer_order_db_collection
-    ) : Collection {
+    ): Collection {
         return $customer_order_db_collection->map(function ($customer_order_model) {
             /** @var Order $customer_order_model */
             return OrderEntity::make(
@@ -142,7 +142,7 @@ class OrderFactory
      */
     public function makeSumPriceFromEntityList(
         Collection $customer_order_entity_list
-    ) : int {
+    ): int {
         return $customer_order_entity_list->sum(function ($customer_order_entity) {
             /** @var OrderEntity $customer_order_entity */
             return $customer_order_entity->getTotalPrice();

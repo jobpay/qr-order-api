@@ -33,8 +33,7 @@ class UpdateUseCase
      */
     public function exec(
         UpdateRequest $request,
-    ): Output
-    {
+    ): Output {
         $customer_model = $this->customer_repository->findWithSeatAndOrdersByToken($request->token);
         if (is_null($customer_model)) {
             return new Output(errors: ['座席の認証に失敗しました。']);

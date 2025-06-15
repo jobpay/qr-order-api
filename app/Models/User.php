@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $store_id
@@ -61,7 +61,11 @@ use NotificationChannels\WebPush\HasPushSubscriptions;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Billable, HasPushSubscriptions;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use Billable;
+    use HasPushSubscriptions;
 
     /**
      * The attributes that are mass assignable.

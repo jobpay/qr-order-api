@@ -46,6 +46,7 @@ class ShopController extends Controller
 
         /** @var ShopEntity $store_entity */
         $store_entity = $output->getData()[0];
+
         return response()->json([
             'id' => $store_entity->getId(),
             'name' => $store_entity->getName(),

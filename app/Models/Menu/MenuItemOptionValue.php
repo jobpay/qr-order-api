@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $menu_item_option_id
@@ -36,6 +36,4 @@ class MenuItemOptionValue extends BaseModel
     {
         return $this->belongsTo(MenuItemOption::class);
     }
-
-
 }

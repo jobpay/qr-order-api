@@ -21,7 +21,7 @@ class UserEntity
         private readonly string $email,
         private readonly Password $password,
         private readonly Role $role,
-        private readonly ?int $store_id ,
+        private readonly ?int $store_id,
     ) {
     }
 

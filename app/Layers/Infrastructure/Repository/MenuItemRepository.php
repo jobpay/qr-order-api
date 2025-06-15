@@ -100,6 +100,7 @@ class MenuItemRepository
     public function create(MenuItemEntity $menu_item_entity, $image_url): void
     {
         DB::beginTransaction();
+
         try {
             // メニューアイテムの登録
             $menu_item = MenuItem::query()->create([
@@ -137,6 +138,7 @@ class MenuItemRepository
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -181,6 +183,7 @@ class MenuItemRepository
     public function update(MenuItemEntity $menu_item_entity, ?string $image_url): void
     {
         DB::beginTransaction();
+
         try {
             // メニューアイテムの更新
             MenuItem::query()->where('id', $menu_item_entity->getId())->update([
@@ -227,6 +230,7 @@ class MenuItemRepository
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
     }
@@ -271,8 +275,7 @@ class MenuItemRepository
     public function findForCustomer(
         CustomerEntity $customer_entity,
         int            $menu_item_id,
-    ): ?MenuItem
-    {
+    ): ?MenuItem {
         return MenuItem::query()
             ->with(['category', 'menuitemOptions'])
             ->where('store_id', $customer_entity->getStoreId())

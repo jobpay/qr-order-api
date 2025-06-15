@@ -25,7 +25,7 @@ class MenuItemFactory
      * @return MenuItemEntity
      * @throws DomainException
      */
-    public function makeNew($request, $store_id) : MenuItemEntity
+    public function makeNew($request, $store_id): MenuItemEntity
     {
         $category = $this->category_repository->find($request->input('category_id'));
 
@@ -74,7 +74,7 @@ class MenuItemFactory
      * @return MenuItemEntity
      * @throws DomainException
      */
-    public function makeByModel($model) : MenuItemEntity
+    public function makeByModel($model): MenuItemEntity
     {
         return MenuItemEntity::make(
             id: $model->id,
@@ -121,7 +121,7 @@ class MenuItemFactory
     public function makeByModelAndRequest(
         Menuitem $model,
         UpdateRequest $request
-    ) : MenuItemEntity {
+    ): MenuItemEntity {
         $category = $this->category_repository->find($request->input('category_id'));
 
         if (is_null($category)) {
@@ -170,7 +170,7 @@ class MenuItemFactory
      * @return Collection
      * @throws DomainException
      */
-    public function makeListFromDbCollection($db_collection) : Collection
+    public function makeListFromDbCollection($db_collection): Collection
     {
         return $db_collection->map(function ($item) {
             return $this->makeByModel($item);

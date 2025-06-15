@@ -2,8 +2,8 @@
 
 namespace App\Layers\Infrastructure\Repository;
 
-use App\Layers\Domain\Entity\Shop\User\UserEntity;
 use App\Layers\Domain\Entity\Shop\ShopEntity;
+use App\Layers\Domain\Entity\Shop\User\UserEntity;
 use App\Models\Store\Store;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +23,7 @@ class StoreRepository
         ?string    $image_url = null,
     ): User {
         DB::beginTransaction();
+
         try {
             $store = Store::create([
                 'name' => $store_entity->getName(),
@@ -41,6 +42,7 @@ class StoreRepository
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
+
             throw $e;
         }
 

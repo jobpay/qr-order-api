@@ -43,7 +43,7 @@ class UpdateUseCase
             return new Output(errors: $e->getMessages());
         }
 
-        if($order_entity->isOtherStore($store_id)) {
+        if ($order_entity->isOtherStore($store_id)) {
             return new Output(errors: ['指定されたオーダーの編集権限がありません。']);
         }
 

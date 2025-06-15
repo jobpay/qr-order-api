@@ -17,7 +17,7 @@ class SeatFactory
      * @return SeatEntity
      * @throws DomainException
      */
-    public function makeNew($request, $store_id) : SeatEntity
+    public function makeNew($request, $store_id): SeatEntity
     {
         return SeatEntity::make(
             id: null,
@@ -33,7 +33,7 @@ class SeatFactory
      * @return SeatEntity
      * @throws DomainException
      */
-    public function makeByModel($model) : SeatEntity
+    public function makeByModel($model): SeatEntity
     {
         // 最新の座席セッションを取得
         $customer = $this->getStartAtAndEndAt($model);
@@ -59,7 +59,7 @@ class SeatFactory
     public function makeByModelAndRequest(
         Seat $model,
         UpdateRequest $request
-    ) : SeatEntity {
+    ): SeatEntity {
         // 最新の座席セッションを取得
         $customer = $this->getStartAtAndEndAt($model);
 
@@ -80,7 +80,7 @@ class SeatFactory
      * @return Collection
      * @throws DomainException
      */
-    public function makeListFromDbCollection($db_collection) : Collection
+    public function makeListFromDbCollection($db_collection): Collection
     {
         return $db_collection->map(function ($item) {
             return $this->makeByModel($item);

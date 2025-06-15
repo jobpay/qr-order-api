@@ -5,7 +5,6 @@ namespace App\Layers\Domain\Entity\Customer;
 use App\Layers\Domain\ValueObject\CustomerStatus;
 use App\Layers\Domain\ValueObject\SeatStatus;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
 
 class CustomerEntity
 {

@@ -49,7 +49,7 @@ class SaleFactory
      * @return SaleEntity
      * @throws \App\Exceptions\DomainException
      */
-    public function makeByModel(Sale $model) : SaleEntity
+    public function makeByModel(Sale $model): SaleEntity
     {
         return SaleEntity::make(
             id: $model->id,
@@ -61,23 +61,23 @@ class SaleFactory
         );
     }
 
-//    /**
-//     * @param SaleEntity $sale_entity
-//     * @param UpdateRequest $request
-//     * @return SaleEntity
-//     */
-//    public function makeUpdate(SaleEntity $sale_entity, UpdateRequest $request): SaleEntity
-//    {
-//        return SaleEntity::make(
-//            id: $sale_entity->getId(),
-//            store_id: $sale_entity->getStoreId(),
-//            menu_item_name: $sale_entity->getMenuItemName(),
-//            category_name: $sale_entity->getCategoryName(),
-//            seat_number: $sale_entity->getSeatNumber(),
-//            quantity: $sale_entity->getQuantity(),
-//            amount: $request->input('amount'),
-//        );
-//    }
+    //    /**
+    //     * @param SaleEntity $sale_entity
+    //     * @param UpdateRequest $request
+    //     * @return SaleEntity
+    //     */
+    //    public function makeUpdate(SaleEntity $sale_entity, UpdateRequest $request): SaleEntity
+    //    {
+    //        return SaleEntity::make(
+    //            id: $sale_entity->getId(),
+    //            store_id: $sale_entity->getStoreId(),
+    //            menu_item_name: $sale_entity->getMenuItemName(),
+    //            category_name: $sale_entity->getCategoryName(),
+    //            seat_number: $sale_entity->getSeatNumber(),
+    //            quantity: $sale_entity->getQuantity(),
+    //            amount: $request->input('amount'),
+    //        );
+    //    }
 
     /**
      * @param $sale_db_collection
