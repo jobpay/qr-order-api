@@ -14,17 +14,6 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
-        <include>
-            <directory>app</directory>
-        </include>
-    </coverage>
-
-    <source>
-        <include>
-            <directory>app</directory>
-        </include>
-    </source>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
