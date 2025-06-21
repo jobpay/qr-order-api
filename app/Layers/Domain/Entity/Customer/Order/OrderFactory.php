@@ -36,6 +36,7 @@ class OrderFactory
                 if (is_null($option_value_model)) {
                     throw new DomainException(['指定されたオプション値IDが見つかりません。']);
                 }
+
                 return OrderOptionEntity::make(
                     id: null,
                     option_id: $option_value_model->menuItemOption->id,
