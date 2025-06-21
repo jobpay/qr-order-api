@@ -26,7 +26,7 @@ class QrCodeController extends Controller
         $result = $writer->write($qrCode);
 
         // QR コードのバイナリデータを取得してBASE64エンコードする
-        $output = "data:image/png;base64,".base64_encode($result->getString());
+        $output = 'data:image/png;base64,'.base64_encode($result->getString());
 
         // レスポンスを生成（画像として返却）
         return new Response($output, Response::HTTP_OK, ['Content-Type' => 'image/png']);

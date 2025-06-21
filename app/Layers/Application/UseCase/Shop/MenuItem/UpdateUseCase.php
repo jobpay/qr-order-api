@@ -35,7 +35,6 @@ class UpdateUseCase
         int $store_id,
         UpdateRequest $request,
     ): Output {
-
         $menu_item_model = $this->menu_item_repository->find($menu_item_id);
         if (is_null($menu_item_model)) {
             return new Output(errors: ['指定されたメニューが見つかりません。']);

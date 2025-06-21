@@ -41,7 +41,6 @@ class SaleFactory
         });
 
         return SaleEntityList::make($sale_entities);
-
     }
 
     /**

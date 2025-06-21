@@ -23,7 +23,6 @@ class OrderFactory
     public function makeNewList(
         StoreRequest $request
     ): Collection {
-
         return collect($request->input('orders'))->map(function ($order) {
             // メニューの存在チェック
             $menu_item_model = $this->menu_item_repository->find($order['menu_item_id']);
@@ -37,7 +36,6 @@ class OrderFactory
                 if (is_null($option_value_model)) {
                     throw new DomainException(['指定されたオプション値IDが見つかりません。']);
                 }
-
                 return OrderOptionEntity::make(
                     id: null,
                     option_id: $option_value_model->menuItemOption->id,
@@ -66,7 +64,6 @@ class OrderFactory
     public function makeConfirmList(
         ConfirmRequest $request
     ): Collection {
-
         return collect($request->input('orders'))->map(function ($order) {
             // メニューの存在チェック
             $menu_item_model = $this->menu_item_repository->find($order['menu_item_id']);

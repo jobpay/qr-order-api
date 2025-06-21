@@ -95,7 +95,6 @@ class UserController extends Controller
      * @param UpdateRequest $request
      * @param UpdateUseCase $use_case
      * @return JsonResponse
-     * @throws \Exception
      */
     public function update(
         int $user_id,
@@ -114,7 +113,6 @@ class UserController extends Controller
      * @param int $user_id
      * @param DestroyUseCase $use_case
      * @return JsonResponse
-     * @throws \Exception
      */
     public function destroy(
         int $user_id,
