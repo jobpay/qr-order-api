@@ -20,7 +20,7 @@ class StoreRepository
     public function createWithUser(
         ShopEntity $store_entity,
         UserEntity $user_entity,
-        ?string    $image_url = null,
+        ?string $image_url = null,
     ): User {
         DB::beginTransaction();
 

@@ -28,7 +28,6 @@ class UpdateUseCase
         int $store_id,
         UpdateRequest $request,
     ): Output {
-
         $order_model = $this->order_repository->find($order_id);
         if (is_null($order_model)) {
             return new Output(errors: ['指定されたオーダーが見つかりません。']);

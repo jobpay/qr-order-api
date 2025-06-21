@@ -48,7 +48,7 @@ Route::post('/user/subscribe', function (Request $request) {
     }
 
     // サブスクリプションの作成
-    $subscription = $user->newSubscription(
+    $user->newSubscription(
         env('STRIPE_SUBSCRIPTION_ID'),
         env('STRIPE_SUBSCRIPTION_PRICE_ID')
     )->create($request->paymentMethodId);
@@ -101,7 +101,7 @@ Route::post('/subscribe', [PushSubscriptionController::class, 'store']);
 // プッシュ通知テスト
 Route::post('/test-push', function () {
     $user = User::find(1);
-    $user->notify(new WebPushDemo);
+    $user->notify(new WebPushDemo());
     return response()->json(['message' => 'Test push notification sent.']);
 });
 
@@ -109,7 +109,8 @@ Route::post('/test-push', function () {
 Route::group(['prefix' => 'stores'], function () {
     Route::post('/', [ShopController::class, 'store']);
     Route::get('/', [ShopController::class, 'show']);
-    Route::post('/update', [ShopController::class, 'update']); // 更新APIだが、multipart/form-data を含むのでPUTではなくPOSTを使用
+     // 更新APIだが、multipart/form-data を含むのでPUTではなくPOSTを使用
+    Route::post('/update', [ShopController::class, 'update']);
 });
 
 // 座席管理
@@ -126,7 +127,8 @@ Route::group(['prefix' => 'menu_items'], function () {
     Route::get('/', [MenuItemController::class, 'index']);
     Route::post('/', [MenuItemController::class, 'store']);
     Route::get('/{menu_item_id}', [MenuItemController::class, 'show']);
-    Route::post('/{menu_item_id}', [MenuItemController::class, 'update']); // 更新APIだが、multipart/form-data を含むのでPUTではなくPOSTを使用
+    // 更新APIだが、multipart/form-data を含むのでPUTではなくPOSTを使用
+    Route::post('/{menu_item_id}', [MenuItemController::class, 'update']);
     Route::delete('/{menu_item_id}', [MenuItemController::class, 'destroy']);
 });
 

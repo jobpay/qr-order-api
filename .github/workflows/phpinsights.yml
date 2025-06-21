@@ -1,0 +1,30 @@
+name: PHP Insights
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  phpinsights:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        tools: composer:v2
+
+    - name: Install Dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run PHP Insights
+      run: php artisan insights --no-interaction --min-quality=70 --min-complexity=80 --min-architecture=60 --min-style=60
+
+    - name: PHP Insights Report
+      if: failure()
+      run: php artisan insights --no-interaction --format=github-action

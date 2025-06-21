@@ -34,6 +34,10 @@ class Sale extends BaseModel
 {
     use HasFactory;
 
+    protected $casts = [
+        'paid_at' => 'datetime',
+    ];
+
     public function store()
     {
         return $this->belongsTo(Store::class);
@@ -43,8 +47,4 @@ class Sale extends BaseModel
     {
         return $this->belongsTo(Order::class);
     }
-
-    protected $casts = [
-        'paid_at' => 'datetime',
-    ];
 }

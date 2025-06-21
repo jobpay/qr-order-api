@@ -23,7 +23,6 @@ class OrderFactory
     public function makeNewList(
         StoreRequest $request
     ): Collection {
-
         return collect($request->input('orders'))->map(function ($order) {
             // メニューの存在チェック
             $menu_item_model = $this->menu_item_repository->find($order['menu_item_id']);
@@ -66,7 +65,6 @@ class OrderFactory
     public function makeConfirmList(
         ConfirmRequest $request
     ): Collection {
-
         return collect($request->input('orders'))->map(function ($order) {
             // メニューの存在チェック
             $menu_item_model = $this->menu_item_repository->find($order['menu_item_id']);

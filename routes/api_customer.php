@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Layers\Presentation\Controllers\Customer\CategoryController;
 use App\Layers\Presentation\Controllers\Customer\MenuItemController;
 use App\Layers\Presentation\Controllers\Customer\OrderController;

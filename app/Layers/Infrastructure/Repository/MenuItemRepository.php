@@ -73,7 +73,7 @@ class MenuItemRepository
      * @return Collection
      */
     public function getForCustomer(
-        CustomerEntity      $customer_entity,
+        CustomerEntity $customer_entity,
         CustomerListRequest $request,
     ): Collection {
         $query = MenuItem::query()
@@ -268,7 +268,7 @@ class MenuItemRepository
      */
     public function findForCustomer(
         CustomerEntity $customer_entity,
-        int            $menu_item_id,
+        int $menu_item_id,
     ): ?MenuItem {
         return MenuItem::query()
             ->with(['category', 'menuitemOptions'])

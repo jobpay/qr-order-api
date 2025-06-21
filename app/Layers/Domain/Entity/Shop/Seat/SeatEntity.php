@@ -55,7 +55,7 @@ class SeatEntity
         ?string $qr_code = null,
         ?Carbon $start_at = null,
         ?Carbon $end_at = null,
-        OrderEntityList $order_entity = null,
+        ?OrderEntityList $order_entity = null,
     ): self {
         return new self(
             id: $id,
@@ -157,7 +157,7 @@ class SeatEntity
         $result = $writer->write($qr_data);
 
         // base64エンコードして返却
-        return "data:image/png;base64," . base64_encode($result->getString());
+        return 'data:image/png;base64,' . base64_encode($result->getString());
     }
 
     /**
