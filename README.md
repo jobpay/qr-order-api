@@ -223,14 +223,100 @@ erDiagram
 
 ## テスト
 
+本プロジェクトでは、PHPUnitを使用したテストを実装しています。
+
+### テスト実行
+
+```bash
+# 全テストの実行
+./vendor/bin/phpunit
+
+# 特定のテストファイルの実行
+./vendor/bin/phpunit tests/Feature/ExampleTest.php
+
+# カバレッジレポート付きでテスト実行
+./vendor/bin/phpunit --coverage-html coverage
+```
+
+### テスト構成
+
+- **Feature Tests**: APIエンドポイントの統合テスト
+- **Unit Tests**: 個別クラス・メソッドの単体テスト
+
+## 品質管理・静的解析
+
+### PHP Insights
+コード品質の総合的な分析を行います。
+
+```bash
+# PHP Insightsの実行
+./vendor/bin/phpinsights
+
+# 詳細な結果表示
+./vendor/bin/phpinsights --verbose
+```
+
+**現在のスコア:**
+- Code Quality: 94.3%
+- Complexity: 95.2%
+- Architecture: 81.3%
+- Style: 92.4%
+
+### PHPStan
+静的解析によるコードの品質チェックを行います。
+
+```bash
+# PHPStanの実行
+./vendor/bin/phpstan analyse
+```
+
+### PHP CS Fixer
+コードスタイルの自動修正を行います。
+
+```bash
+# コードスタイルのチェック
+./vendor/bin/php-cs-fixer fix --dry-run --diff
+
+# コードスタイルの自動修正
+./vendor/bin/php-cs-fixer fix
+```
+
 ## CI/CD
+
+GitHub Actionsを使用した継続的インテグレーションを実装しています。
+
+### 自動実行される処理
+
+**プルリクエスト時:**
+- PHPUnitによるテスト実行
+- PHP Insightsによるコード品質チェック
+- PHPStanによる静的解析
+- PHP CS Fixerによるコードスタイルチェック
+
+**設定ファイル:**
+- `.github/workflows/phpinsights.yml` - PHP Insights実行ワークフロー
+- `phpunit.xml` - PHPUnit設定
+- `phpstan.neon` - PHPStan設定
+- `.php-cs-fixer.php` - PHP CS Fixer設定
+- `config/insights.php` - PHP Insights設定
+
+### 品質基準
+
+プルリクエストをマージするには以下の基準を満たす必要があります：
+- 全テストが通過すること
+- PHP Insightsのスコアが基準値以上であること
+  - Code Quality: 70%以上
+  - Complexity: 80%以上
+  - Architecture: 60%以上
+  - Style: 50%以上
+- PHPStanでエラーが発生しないこと
+- コードスタイルがプロジェクト基準に準拠していること
 
 ## 今後の展望
 
 - [ ] 決済機能の追加
 - [ ] 多言語対応
-- [ ] API仕様
-- [ ] テスト実装
-- [ ] プルリクエスト時の自動テスト
-- [ ] コードスタイルチェック（PHP_CodeSniffer）
-- [ ] 静的解析（PHPStan）
+- [ ] API仕様書の整備
+- [ ] テストカバレッジの向上
+- [ ] パフォーマンス最適化
+- [ ] セキュリティ監査の実施
