@@ -1,7 +1,13 @@
 # QRコード対応 モバイルオーダーシステム API
 ### デモ
-
-<img src="https://github.com/user-attachments/assets/43fc9bd3-be92-4f84-997a-31b4c498c088" width="280">
+<table border="0" cellspacing="8" cellpadding="0">
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/0db2f746-e348-4dc6-baa3-c7feedb371da" width="280" alt="デモ1"></td>
+    <td><img src="https://github.com/user-attachments/assets/c25bfcec-b4ae-4ae2-8fc8-d411e87814b6" width="280" alt="デモ2"></td>
+    <td><img src="https://github.com/user-attachments/assets/fdf98dde-63be-4d93-a03b-49acfa2aaa03" width="280" alt="デモ3"></td>
+  </tr>
+</table>
+※フロントエンドはNext.jsで実装していますが、本リポジトリには含まれません。
 
 ## 概要
 QRコードを活用したオーダーシステムのバックエンドAPIです。ドメイン駆動設計（DDD）およびクリーンアーキテクチャの原則を参考に構築されています。完全なクリーンアーキテクチャを厳密に実現しているわけではなく、実装の一部には妥協や独自の解釈も含まれています。Laravelの従来の構造ではなく、ドメイン中心の設計を採用しています。
